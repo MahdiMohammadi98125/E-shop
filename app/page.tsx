@@ -1,9 +1,13 @@
-import Image from "next/image";
-
+import Container from "./Container";
+import HomeBanner from "./HomeBanner";
 export default function Home() {
   return (
     <div>
-      <h1 className="font-bold">Hi welcome to this project</h1>
+      <Container>
+        <div className="p-8">
+          <HomeBanner />
+        </div>
+      </Container>
     </div>
   );
 }
