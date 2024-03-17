@@ -1,4 +1,5 @@
 "use client";
+import { averageProductRating } from "@/utils/averageProductRating";
 import { formatPrice } from "@/utils/formatPrice";
 import { truncateText } from "@/utils/truncateText";
 import { Rating } from "@mui/material";
@@ -12,9 +13,6 @@ interface ProductCardProps {
 
 export default function ProductCard({ data }: { ProductCardProps }) {
   const router = useRouter();
-  const productRating =
-    data.reviews.reduce((acc: number, item: any) => acc + item.rating, 0) /
-    data.reviews.length;
 
   return (
     <div className="col-span-1 p-2 text-center transition border-[1.2px] rounded-sm cursor-pointer bg-slate-50 border-slate-200 hover:scale-105">
@@ -32,7 +30,7 @@ export default function ProductCard({ data }: { ProductCardProps }) {
         </div>
         <div>{truncateText(data.name)}</div>
         <div>
-          <Rating value={productRating} readOnly />
+          <Rating value={averageProductRating(data)} readOnly />
         </div>
         <div>{data.reviews.length} reviews</div>
         <div className="font-semibold">{formatPrice(data.price)}</div>
