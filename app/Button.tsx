@@ -22,6 +22,7 @@ export default function Button({
 }: ButtonProps) {
   return (
     <button
+      onClick={onClick}
       disabled={disabled}
       className={`disabled:cursor-not-allowed disabled:opacity-70 rounded-md hover:opacity-80 transition w-full border-slate-700 flex items-center justify-center gap-2 ${
         outline ? "bg-white" : "bg-slate-700"

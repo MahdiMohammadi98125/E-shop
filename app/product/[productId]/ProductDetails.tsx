@@ -3,6 +3,7 @@ import Button from "@/app/Button";
 import ProductImage from "@/app/components/products/ProductImage";
 import SelectedColor from "@/app/components/products/SelectedColor";
 import SetQuantity from "@/app/components/products/SetQuantity";
+import { useCart } from "@/hooks/useCart";
 import { averageProductRating } from "@/utils/averageProductRating";
 import { Rating } from "@mui/material";
 import { useCallback, useState } from "react";
@@ -32,6 +33,8 @@ const Horizental = () => {
 };
 
 export default function ProductDetails({ product }: ProductDetailsProps) {
+  const { cartProducts, handleAddProductToCart } = useCart();
+  console.log(cartProducts);
   const [cartProduct, setCartProduct] = useState({
     id: product.id,
     name: product.name,
@@ -107,7 +110,10 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
         />
         <Horizental />
         <div className="w-full md:w-[300px]">
-          <Button label="Add to cart" onClick={() => null} />
+          <Button
+            label="Add to cart"
+            onClick={() => handleAddProductToCart(cartProduct)}
+          />
         </div>
       </div>
     </div>
