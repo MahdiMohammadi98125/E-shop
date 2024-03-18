@@ -36,6 +36,7 @@ const Horizental = () => {
 
 export default function ProductDetails({ product }: ProductDetailsProps) {
   const { cartProducts, handleAddProductToCart } = useCart();
+  console.log(cartProducts);
   const [isProductInCart, setIsProductInCart] = useState(false);
   const [cartProduct, setCartProduct] = useState({
     id: product.id,
@@ -52,6 +53,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
 
   // to check if the product is exits in the cartProducts
   useEffect(() => {
+    setIsProductInCart(false);
     if (cartProducts) {
       const existingIndex = cartProducts.findIndex(
         (item) => item.id === product.id
@@ -60,7 +62,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
         setIsProductInCart(true);
       }
     }
-  }, [cartProducts]);
+  }, [cartProducts, product.id]);
 
   const handleColorSelect = useCallback((value: SelectedImgType) => {
     setCartProduct((prev) => ({ ...prev, selectedImg: value }));
