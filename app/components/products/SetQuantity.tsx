@@ -2,7 +2,7 @@ import { CartProductType } from "@/app/product/[productId]/ProductDetails";
 import React from "react";
 
 interface SetQuantityProps {
-  cartCounter?: number;
+  cartCounter?: boolean;
   cartProduct: CartProductType;
   handleQuantityIncrease: () => void;
   handleQuantityDecrease: () => void;

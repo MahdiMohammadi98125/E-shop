@@ -36,7 +36,6 @@ const Horizental = () => {
 
 export default function ProductDetails({ product }: ProductDetailsProps) {
   const { cartProducts, handleAddProductToCart } = useCart();
-  console.log(cartProducts);
   const [isProductInCart, setIsProductInCart] = useState(false);
   const [cartProduct, setCartProduct] = useState({
     id: product.id,
