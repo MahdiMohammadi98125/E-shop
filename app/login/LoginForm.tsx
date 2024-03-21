@@ -24,7 +24,7 @@ export default function LoginForm() {
     <>
       <Heading title="Login in for E~shop" />
       <Button
-        label="Log in with Google"
+        label="Continue with Google"
         onClick={() => {}}
         outline
         icon={AiOutlineGoogle}
