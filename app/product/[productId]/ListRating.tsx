@@ -1,5 +1,5 @@
-import Avatar from "@/app/Avatar";
-import Heading from "@/app/Heading";
+import Avatar from "@/app/components/Avatar";
+import Heading from "@/app/components/Heading";
 import { Rating } from "@mui/material";
 import moment from "moment";
 import React from "react";

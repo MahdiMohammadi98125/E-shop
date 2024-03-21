@@ -1,4 +1,4 @@
-import Container from "@/app/Container";
+import Container from "@/app/components/Container";
 import Link from "next/link";
 import React from "react";
 import { Redressed } from "next/font/google";

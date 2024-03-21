@@ -1,5 +1,5 @@
 import React from "react";
-import Container from "../Container";
+import Container from "../components/Container";
 import CartClient from "./CartClient";
 
 export default function CartPage() {

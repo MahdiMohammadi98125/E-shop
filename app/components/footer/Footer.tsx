@@ -1,4 +1,4 @@
-import Container from "@/app/Container";
+import Container from "@/app/components/Container";
 import React from "react";
 import FooterList from "./FooterList";
 import Link from "next/link";

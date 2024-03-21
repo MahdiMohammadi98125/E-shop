@@ -1,7 +1,7 @@
 import React from "react";
 import ProductDetails from "./ProductDetails";
 import { products } from "@/utils/products";
-import Container from "@/app/Container";
+import Container from "@/app/components/Container";
 import ListRating from "./ListRating";
 interface IParams {
   productId?: string;

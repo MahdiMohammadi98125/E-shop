@@ -1,5 +1,5 @@
 "use client";
-import Button from "@/app/Button";
+import Button from "@/app/components/Button";
 import ProductImage from "@/app/components/products/ProductImage";
 import SelectedColor from "@/app/components/products/SelectedColor";
 import SetQuantity from "@/app/components/products/SetQuantity";
