@@ -6,8 +6,12 @@ import Button from "../components/Button";
 import Heading from "../components/Heading";
 import Input from "../components/inputs/Input";
 import { AiOutlineGoogle } from "react-icons/ai";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 export default function LoginForm() {
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const {
     register,
@@ -16,10 +20,28 @@ export default function LoginForm() {
   } = useForm<FieldValues>({
     defaultValues: { name: "", password: "" },
   });
-  const onSubmit: SubmitHandler<FieldValues> = (data: FieldValues) => {
+  const onSubmit: SubmitHandler<FieldValues> = async (data: FieldValues) => {
     setIsLoading(true);
-    console.log(data);
+
+    try {
+      const res = await signIn("credentials", {
+        ...data,
+        redirect: false,
+      });
+      if (res?.ok) {
+        router.replace("/cart");
+        toast.success("Login successful");
+      }
+      if (res?.error) {
+        toast.error(res.error);
+        setIsLoading(false);
+      }
+    } catch (error: any) {
+      toast.error(error.message);
+      setIsLoading(false);
+    }
   };
+
   return (
     <>
       <Heading title="Login in for E~shop" />
@@ -32,7 +54,7 @@ export default function LoginForm() {
       <hr className="w-full h-px bg-slate-300" />
 
       <Input
-        id="eamil"
+        id="email"
         label="Email"
         disabled={isLoading}
         errors={errors}
@@ -55,7 +77,7 @@ export default function LoginForm() {
       />
       <p className="text-sm">
         Dont have an account?{" "}
-        <Link href="/login" className="underline">
+        <Link href="/register" className="underline">
           Register
         </Link>{" "}
         here.

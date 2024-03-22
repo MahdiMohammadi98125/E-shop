@@ -6,9 +6,14 @@ import Button from "../components/Button";
 import Heading from "../components/Heading";
 import Input from "../components/inputs/Input";
 import { AiOutlineGoogle } from "react-icons/ai";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
 
 export default function RegisterForm() {
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -18,7 +23,18 @@ export default function RegisterForm() {
   });
   const onSubmit: SubmitHandler<FieldValues> = (data: FieldValues) => {
     setIsLoading(true);
-    console.log(data);
+    axios
+      .post("/api/register", data)
+      .then(() => {
+        toast.success("account created!");
+        router.push("/cart");
+      })
+      .catch(() => {
+        toast.error("something went wrong!");
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
   return (
     <>
@@ -40,7 +56,7 @@ export default function RegisterForm() {
         type="text"
       />
       <Input
-        id="eamil"
+        id="email"
         label="Email"
         disabled={isLoading}
         errors={errors}

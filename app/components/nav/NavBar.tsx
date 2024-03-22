@@ -1,13 +1,14 @@
+import { getCurrentUser } from "@/actions/getCurrentUser";
 import Container from "@/app/components/Container";
-import Link from "next/link";
-import React from "react";
 import { Redressed } from "next/font/google";
-import { useCart } from "@/hooks/useCart";
+import Link from "next/link";
 import CartCount from "./CartCount";
+import UserMenu from "./UserMenu";
 
 const redressed = Redressed({ subsets: ["latin"], weight: ["400"] });
 
-export default function NavBar() {
+export default async function NavBar() {
+  const currentUser = await getCurrentUser();
   return (
     <nav className="sticky top-0 z-30 w-full shadow-sm bg-slate-200 ">
       <div className="py-4 border-b-[1px]">
@@ -22,7 +23,7 @@ export default function NavBar() {
             <div className="hidden md:block">search</div>
             <div className="flex items-center gap-8 md:gap-12">
               <CartCount />
-              <div>userMenu</div>
+              <UserMenu currentUser={currentUser} />
             </div>
           </div>
         </Container>
