@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import Button from "../components/Button";
 import Heading from "../components/Heading";
@@ -9,8 +9,13 @@ import { AiOutlineGoogle } from "react-icons/ai";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import { SafeUser } from "@/types";
 
-export default function LoginForm() {
+interface LoginFormProps {
+  currentUser: SafeUser | null;
+}
+
+export default function LoginForm({ currentUser }: LoginFormProps) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const {
@@ -41,6 +46,18 @@ export default function LoginForm() {
       setIsLoading(false);
     }
   };
+
+  useEffect(() => {
+    // If the user is already logged in,
+    if (currentUser) {
+      router.push("/cart");
+      router.refresh();
+    }
+  });
+
+  if (currentUser) {
+    return <p className="text-center">Logged In. Redirecting...</p>;
+  }
 
   return (
     <>
