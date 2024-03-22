@@ -1,16 +1,16 @@
 "use client";
+import { SafeUser } from "@/types";
+import axios from "axios";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import { AiOutlineGoogle } from "react-icons/ai";
 import Button from "../components/Button";
 import Heading from "../components/Heading";
 import Input from "../components/inputs/Input";
-import { AiOutlineGoogle } from "react-icons/ai";
-import axios from "axios";
-import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
-import { SafeUser } from "@/types";
 
 interface RegisterFormProps {
   currentUser: SafeUser | null;
@@ -59,7 +59,9 @@ export default function RegisterForm({ currentUser }: RegisterFormProps) {
       <Heading title="Sign up for E~shop" />
       <Button
         label="Sign up with Google"
-        onClick={() => {}}
+        onClick={() => {
+          signIn("google");
+        }}
         outline
         icon={AiOutlineGoogle}
       />

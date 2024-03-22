@@ -64,7 +64,9 @@ export default function LoginForm({ currentUser }: LoginFormProps) {
       <Heading title="Login in for E~shop" />
       <Button
         label="Continue with Google"
-        onClick={() => {}}
+        onClick={() => {
+          signIn("google");
+        }}
         outline
         icon={AiOutlineGoogle}
       />

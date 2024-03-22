@@ -23,7 +23,7 @@ export default function UserMenu({ currentUser }: UserMenuProps) {
         className="flex items-center gap-1 p-2 transition border rounded-full cursor-pointer border-slate-400 hover:shadow-md text-slate-700"
         onClick={toggleMenu}
       >
-        <Avatar />
+        <Avatar src={currentUser?.image} />
         <AiFillCaretDown />
       </div>
       {isOpen && (
