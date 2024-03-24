@@ -16,7 +16,7 @@ type CartContextType = {
   handleRemoveProductFromCart: (product: CartProductType) => void;
   handleQuantityDecrease: (product: CartProductType) => void;
   handleQuantityIncrease: (product: CartProductType) => void;
-  handleClearCart: () => void;
+  handleClearCart: (show?: boolean) => void;
   paymentIntent: string | null;
   handleSetPaymentIntent: (val: string | null) => void;
 };
@@ -141,10 +141,10 @@ export const CartContextProvider = (props: Props) => {
     [cartProducts]
   );
   // Remove from cart
-  const handleClearCart = useCallback(() => {
+  const handleClearCart = useCallback((show?: boolean) => {
     setCartProducts(null);
     localStorage.removeItem("eShopCartItems");
-    toast.success("Cart cleared");
+    show && toast.success("Cart cleared");
     setCartTotalQty(0);
   }, []);
 

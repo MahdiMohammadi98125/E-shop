@@ -56,7 +56,7 @@ export default function CartClient({ currentUser }: CartClientProps) {
             small
             outline
             onClick={() => {
-              handleClearCart();
+              handleClearCart(true);
             }}
           />
         </div>

@@ -1,10 +1,9 @@
 "use client";
 import { useCart } from "@/hooks/useCart";
-import { dividerClasses } from "@mui/material";
 import { Elements } from "@stripe/react-stripe-js";
 import { StripeElementsOptions, loadStripe } from "@stripe/stripe-js";
 import { useRouter } from "next/navigation";
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import Button from "../components/Button";
 import CheckoutForm from "./CheckoutForm";
