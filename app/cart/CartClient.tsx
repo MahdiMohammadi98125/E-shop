@@ -6,8 +6,16 @@ import Button from "../components/Button";
 import Heading from "../components/Heading";
 import ItemContent from "./ItemContent";
 import { formatPrice } from "@/utils/formatPrice";
+import { useRouter } from "next/navigation";
+import { SafeUser } from "@/types";
+import { getCurrentUser } from "@/actions/getCurrentUser";
 
-export default function CartClient() {
+interface CartClientProps {
+  currentUser: SafeUser | null;
+}
+
+export default function CartClient({ currentUser }: CartClientProps) {
+  const router = useRouter();
   const { cartProducts, handleClearCart, cartTotalAmount } = useCart();
   if (!cartProducts || cartProducts.length === 0) {
     return (
@@ -61,7 +69,14 @@ export default function CartClient() {
             <p className="text-slate-500">
               Taxes and shipping calculate at checkout.
             </p>
-            <Button label="Checkout" custom="text-sm" onClick={() => {}} />
+            <Button
+              label={currentUser ? "Checkout" : "Login to checkout"}
+              outline={currentUser ? false : true}
+              custom="text-sm"
+              onClick={() => {
+                currentUser ? router.push("/checkout") : router.push("/login");
+              }}
+            />
             <Link
               href="/cart"
               className="flex items-center gap-1 mt-2 text-slate-500"
