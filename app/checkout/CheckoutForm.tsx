@@ -35,7 +35,7 @@ export default function CheckoutForm({
       return;
     }
     handlePaymentSuccess(false);
-  }, [clientSecret, handlePaymentSuccess, stripe]);
+  }, [stripe]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -52,8 +52,8 @@ export default function CheckoutForm({
           handleClearCart();
           handlePaymentSuccess(true);
           handleSetPaymentIntent(null);
-          setIsLoading(false);
         }
+        setIsLoading(false);
       });
   };
 

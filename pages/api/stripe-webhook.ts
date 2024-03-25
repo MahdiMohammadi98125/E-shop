@@ -1,6 +1,7 @@
 import { buffer } from "micro";
 import { NextApiRequest, NextApiResponse } from "next";
 import Stripe from "stripe";
+import prisma from "@/libs/prismadb";
 
 export const config = {
   api: {
@@ -8,9 +9,8 @@ export const config = {
   },
 };
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "", {
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
   apiVersion: "2023-10-16",
-  typescript: true,
 });
 
 export default async function handler(

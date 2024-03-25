@@ -27,7 +27,7 @@ export default function CheckoutClient() {
       setError(false);
       fetch("/api/create-payment-intent", {
         method: "POST",
-        headers: { "Content-type": "Application/json" },
+        headers: { "Content-type": "application/json" },
         body: JSON.stringify({
           items: cartProducts,
           payment_intent_id: paymentIntent,
@@ -51,7 +51,7 @@ export default function CheckoutClient() {
           toast.error("Something went wrong");
         });
     }
-  }, [cartProducts, handleSetPaymentIntent, paymentIntent, router]);
+  }, [cartProducts, paymentIntent]);
 
   const handlePaymentSuccess = useCallback((val: boolean) => {
     setPaymentSuccess(val);
