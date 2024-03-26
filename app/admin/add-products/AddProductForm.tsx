@@ -9,18 +9,17 @@ import TextArea from "@/app/components/inputs/TextArea";
 import firebaseApp from "@/libs/firebase";
 import { categories } from "@/utils/categories";
 import { colors } from "@/utils/colors";
-import { useCallback, useEffect, useState } from "react";
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import toast from "react-hot-toast";
+import axios from "axios";
 import {
   getDownloadURL,
   getStorage,
   ref,
   uploadBytesResumable,
 } from "firebase/storage";
-import { resolve } from "path";
-import axios from "axios";
 import { useRouter } from "next/navigation";
+import { useCallback, useEffect, useState } from "react";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 export type ImageType = {
   color: string;
@@ -100,8 +99,8 @@ export default function AddProductForm() {
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     // upload images to firebase storage
-    // save product to db
-    setIsLoading(true);
+
+    // setIsLoading(true);
     const uploadedImages: UploadedImageType[] = [];
     if (!data.category) {
       toast.error("Please select a category");
@@ -145,7 +144,6 @@ export default function AddProductForm() {
                     .then((downloadURL) => {
                       uploadedImages.push({ ...item, image: downloadURL });
                       console.log("File available at", downloadURL);
-                      setIsLoading(false);
                       resolve();
                     })
                     .catch((err) => {
@@ -163,6 +161,7 @@ export default function AddProductForm() {
         toast.error("Error in uploading image");
       }
     }
+    // save product to db
     await handleImageUploads();
     const productData = {
       ...data,
@@ -223,7 +222,7 @@ export default function AddProductForm() {
         required
       />
       <CustomCheckbox
-        id="check"
+        id="inStock"
         label="this product is in stock"
         register={register}
         disabled={isLoading}
@@ -263,7 +262,7 @@ export default function AddProductForm() {
               key={index}
               item={item}
               addImageToState={addImageToState}
-              isProductCreated={false}
+              isProductCreated={isProductCreated}
               removeImageFromState={removeImageFromState}
             />
           ))}
