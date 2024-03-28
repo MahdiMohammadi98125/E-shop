@@ -5,11 +5,8 @@ import Status from "@/app/components/Status";
 import { formatPrice } from "@/utils/formatPrice";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { Order, User } from "@prisma/client";
-import axios from "axios";
 import moment from "moment";
 import { useRouter } from "next/navigation";
-import { useCallback } from "react";
-import toast from "react-hot-toast";
 import {
   MdAccessTimeFilled,
   MdDeliveryDining,
@@ -17,7 +14,7 @@ import {
   MdRemoveRedEye,
 } from "react-icons/md";
 
-interface ManageOrderClientsProps {
+interface OrderClientsProps {
   orders: ChangedOrder[];
 }
 
@@ -25,9 +22,7 @@ type ChangedOrder = Order & {
   user: User;
 };
 
-export default function ManageOrderClients({
-  orders,
-}: ManageOrderClientsProps) {
+export default function OrderClients({ orders }: OrderClientsProps) {
   const router = useRouter();
   let rows: any = [];
   if (orders) {
@@ -120,18 +115,6 @@ export default function ManageOrderClients({
         return (
           <div className="flex items-center gap-4 mt-2">
             <ActionBtns
-              icon={MdDeliveryDining}
-              onClick={() => {
-                handleDispatch(params.row.id);
-              }}
-            />
-            <ActionBtns
-              icon={MdDone}
-              onClick={() => {
-                handleDeliver(params.row.id);
-              }}
-            />
-            <ActionBtns
               icon={MdRemoveRedEye}
               onClick={() => {
                 router.push(`/order/${params.row.id}`);
@@ -142,32 +125,6 @@ export default function ManageOrderClients({
       },
     },
   ];
-
-  const handleDispatch = useCallback((id: string) => {
-    axios
-      .put("/api/order", { id, deliveryStatus: "dispatched" })
-      .then(() => {
-        toast.success("Order dispatched");
-        router.refresh();
-      })
-      .catch((error) => {
-        toast.error(error.message);
-        console.log(error);
-      });
-  }, []);
-
-  const handleDeliver = useCallback((id: string) => {
-    axios
-      .put(`/api/order`, { id, deliveryStatus: "delivered" })
-      .then(() => {
-        toast.success("Order delivered successfully");
-        router.refresh();
-      })
-      .catch((error) => {
-        toast.error(error.message);
-        console.log(error);
-      });
-  }, []);
 
   return (
     <div className="max-w-[1150px] m-auto text-xl">

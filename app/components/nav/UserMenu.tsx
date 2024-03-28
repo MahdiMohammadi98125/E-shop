@@ -7,6 +7,7 @@ import { AiFillCaretDown } from "react-icons/ai";
 import Avatar from "../Avatar";
 import BackDrop from "./BackDrop";
 import MenuItem from "./MenuItem";
+import { useRouter } from "next/navigation";
 
 interface UserMenuProps {
   currentUser: SafeUser | null;
@@ -14,6 +15,7 @@ interface UserMenuProps {
 
 export default function UserMenu({ currentUser }: UserMenuProps) {
   const [isOpen, setIsOPen] = useState(false);
+  const router = useRouter();
   const toggleMenu = useCallback(() => {
     setIsOPen((prev) => !prev);
   }, []);
@@ -30,9 +32,13 @@ export default function UserMenu({ currentUser }: UserMenuProps) {
         <div className="absolute right-0 z-30 flex flex-col bg-white rounded-md shadow-md cursor-pointer top-12 w-[170px] overflow-hidden">
           {currentUser?.email ? (
             <div>
-              <Link href="orders">
+              <span
+                onClick={() => {
+                  router.push("/orders");
+                }}
+              >
                 <MenuItem onClick={toggleMenu}>Your orders</MenuItem>
-              </Link>
+              </span>
               <Link href="admin">
                 <MenuItem onClick={toggleMenu}>Admin dashboard</MenuItem>
               </Link>
