@@ -39,9 +39,13 @@ export default function UserMenu({ currentUser }: UserMenuProps) {
               >
                 <MenuItem onClick={toggleMenu}>Your orders</MenuItem>
               </span>
-              <Link href="admin">
+              <span
+                onClick={() => {
+                  router.push("/admin");
+                }}
+              >
                 <MenuItem onClick={toggleMenu}>Admin dashboard</MenuItem>
-              </Link>
+              </span>
               <hr />
               <MenuItem onClick={signOut}>Logout</MenuItem>
             </div>

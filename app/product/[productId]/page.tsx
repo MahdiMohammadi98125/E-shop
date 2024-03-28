@@ -3,11 +3,19 @@ import ProductDetails from "./ProductDetails";
 import { products } from "@/utils/products";
 import Container from "@/app/components/Container";
 import ListRating from "./ListRating";
+import { getProductById } from "@/actions/getProductById";
+import NullData from "@/app/components/NullData";
 interface IParams {
   productId?: string;
 }
-export default function ProductPage({ params }: { params: IParams }) {
-  const product = products.find((product) => product.id === params?.productId);
+export default async function ProductPage({ params }: { params: IParams }) {
+  const product = await getProductById(params);
+  console.log(product);
+  if (!product) {
+    return (
+      <NullData title="Oops! product with the given Id does  not found!" />
+    );
+  }
   return (
     <div className="p-8">
       <Container>

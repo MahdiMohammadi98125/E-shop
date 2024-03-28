@@ -1,6 +1,6 @@
 import prisma from "@/libs/prismadb";
 
-interface IProductParams {
+export interface IProductParams {
   category?: string | null;
   searchTerm?: string | null;
 }

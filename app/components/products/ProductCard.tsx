@@ -11,7 +11,7 @@ interface ProductCardProps {
   data: any;
 }
 
-export default function ProductCard({ data }: { ProductCardProps }) {
+export default function ProductCard({ data }: ProductCardProps) {
   const router = useRouter();
 
   return (
