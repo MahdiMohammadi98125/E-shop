@@ -5,12 +5,14 @@ import Container from "@/app/components/Container";
 import ListRating from "./ListRating";
 import { getProductById } from "@/actions/getProductById";
 import NullData from "@/app/components/NullData";
+import AddRating from "./AddRating";
+import { getCurrentUser } from "@/actions/getCurrentUser";
 interface IParams {
   productId?: string;
 }
 export default async function ProductPage({ params }: { params: IParams }) {
   const product = await getProductById(params);
-  console.log(product);
+  const user = await getCurrentUser();
   if (!product) {
     return (
       <NullData title="Oops! product with the given Id does  not found!" />
@@ -21,7 +23,7 @@ export default async function ProductPage({ params }: { params: IParams }) {
       <Container>
         <ProductDetails product={product} />
         <div className="flex flex-col gap-4 mt-20">
-          <div>Add Rating</div>
+          <AddRating product={product} user={user} />
           <ListRating product={product} />
         </div>
       </Container>
