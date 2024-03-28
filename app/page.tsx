@@ -1,10 +1,8 @@
-import { products } from "@/utils/products";
+import { IProductParams, getProducts } from "@/actions/getProducts";
 import Container from "./components/Container";
 import HomeBanner from "./components/HomeBanner";
-import { truncateText } from "@/utils/truncateText";
-import ProductCard from "./components/products/ProductCard";
-import { IProductParams, getProducts } from "@/actions/getProducts";
 import NullData from "./components/NullData";
+import ProductCard from "./components/products/ProductCard";
 
 interface HomeProps {
   searchParams: IProductParams;
@@ -12,7 +10,6 @@ interface HomeProps {
 
 export default async function Home({ searchParams }: HomeProps) {
   const products = await getProducts(searchParams);
-  console.log(products);
   if (products.length === 0) {
     return (
       <NullData title="Oops! no products found. please click All to clear the filter" />

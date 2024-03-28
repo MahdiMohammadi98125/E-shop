@@ -4,6 +4,7 @@ import { Redressed } from "next/font/google";
 import Link from "next/link";
 import CartCount from "./CartCount";
 import UserMenu from "./UserMenu";
+import Categories from "./Categories";
 
 const redressed = Redressed({ subsets: ["latin"], weight: ["400"] });
 
@@ -28,6 +29,7 @@ export default async function NavBar() {
           </div>
         </Container>
       </div>
+      <Categories />
     </nav>
   );
 }
