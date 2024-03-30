@@ -10,7 +10,7 @@ interface OrderItemProps {
 
 export default function OrderItem({ item }: OrderItemProps) {
   return (
-    <div className="grid items-center grid-cols-5 gap-4 md:text-sm">
+    <div className="grid items-center grid-cols-5 gap-4 overflow-x-auto md:text-sm">
       <div className="flex items-center col-span-2 gap-2 md:gap-4 justify-self-start">
         <div className="relative w-[70px] aspect-square">
           <Image

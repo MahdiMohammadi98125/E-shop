@@ -12,7 +12,6 @@ export default async function Admin() {
   const orders = await getOrders();
   const users = await getUsers();
   const barGraphData = await getGraphData();
-  console.log(barGraphData);
   return (
     <div className="pt-8">
       <Container>

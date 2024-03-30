@@ -20,7 +20,7 @@ export default function OrderDetails({ order }: OrderDetailsProps) {
       </div>
       <div>Order ID: {order.id}</div>
       <div>
-        Total Amount: <span>{formatPrice(order.amount)}</span>
+        Total Amount: <span>{formatPrice(order.amount / 100)}</span>
       </div>
       <div className="flex items-center gap-2">
         <div>Payment status:</div>
@@ -76,7 +76,7 @@ export default function OrderDetails({ order }: OrderDetailsProps) {
       </div>
 
       <div>Created date: {moment(order.createdDate).fromNow()}</div>
-      <div>
+      <div className="overflow-x-auto">
         <h2 className="mt-4 mb-2 font-semibold">Products ordered</h2>
         <div className="grid items-center grid-cols-5 gap-4 pb-2 text-xs">
           <div className="col-span-2 justify-self-start">PRODUCT</div>
