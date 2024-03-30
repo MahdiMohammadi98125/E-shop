@@ -18,7 +18,7 @@ export default function ItemContent({ item }: ItemContentProps) {
     handleQuantityDecrease,
   } = useCart();
   return (
-    <div className="grid items-center grid-cols-5 gap-4 py-2 mt-8 text-xs border-t-[1.5px] border-slate-200">
+    <div className="grid items-center grid-cols-5 gap-4 py-2 mt-8 text-xs border-t-[1.5px] border-slate-200 overflow-x-auto">
       <div className="flex items-center col-span-2 gap-2 justify-self-start md:gap-4">
         <Link href={`/product/${item.id}`}>
           <div className="w-[70px] aspect-square ">
@@ -47,7 +47,6 @@ export default function ItemContent({ item }: ItemContentProps) {
       <div className="justify-self-start">{formatPrice(item.price)}</div>
       <div className="justify-self-start">
         <SetQuantity
-          cartCounter={true}
           handleQuantityDecrease={() => {
             handleQuantityDecrease(item);
           }}
@@ -55,6 +54,7 @@ export default function ItemContent({ item }: ItemContentProps) {
             handleQuantityIncrease(item);
           }}
           cartProduct={item}
+          cartCounter={true}
         />
       </div>
       <div className="font-semibold justify-self-end">

@@ -1,12 +1,10 @@
-import React from "react";
-import ProductDetails from "./ProductDetails";
-import { products } from "@/utils/products";
-import Container from "@/app/components/Container";
-import ListRating from "./ListRating";
+import { getCurrentUser } from "@/actions/getCurrentUser";
 import { getProductById } from "@/actions/getProductById";
+import Container from "@/app/components/Container";
 import NullData from "@/app/components/NullData";
 import AddRating from "./AddRating";
-import { getCurrentUser } from "@/actions/getCurrentUser";
+import ListRating from "./ListRating";
+import ProductDetails from "./ProductDetails";
 interface IParams {
   productId?: string;
 }

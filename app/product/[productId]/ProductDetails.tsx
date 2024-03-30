@@ -69,12 +69,12 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
 
   const handleQuantityIncrease = useCallback(() => {
     if (cartProduct.quantity === 90) return;
-    setCartProduct((prev) => ({ ...prev, quantity: prev.quantity++ }));
+    setCartProduct((prev) => ({ ...prev, quantity: prev.quantity + 1 }));
   }, [cartProduct]);
 
   const handleQuantityDecrease = useCallback(() => {
     if (cartProduct.quantity === 1) return;
-    setCartProduct((prev) => ({ ...prev, quantity: --prev.quantity }));
+    setCartProduct((prev) => ({ ...prev, quantity: prev.quantity - 1 }));
   }, [cartProduct]);
 
   return (
@@ -139,8 +139,8 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
             <Horizental />
             <SetQuantity
               cartProduct={cartProduct}
-              handleQuantityIncrease={handleQuantityIncrease}
               handleQuantityDecrease={handleQuantityDecrease}
+              handleQuantityIncrease={handleQuantityIncrease}
             />
             <Horizental />
             <div className="w-full md:w-[300px]">
