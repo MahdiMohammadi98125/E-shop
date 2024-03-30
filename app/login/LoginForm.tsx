@@ -36,6 +36,7 @@ export default function LoginForm({ currentUser }: LoginFormProps) {
       if (res?.ok) {
         router.replace("/cart");
         toast.success("Login successful");
+        router.refresh();
       }
       if (res?.error) {
         toast.error(res.error);
