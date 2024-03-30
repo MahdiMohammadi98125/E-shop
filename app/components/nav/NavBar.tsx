@@ -11,6 +11,7 @@ const redressed = Redressed({ subsets: ["latin"], weight: ["400"] });
 
 export default async function NavBar() {
   const currentUser = await getCurrentUser();
+  console.log(currentUser);
   return (
     <nav className="sticky top-0 z-30 w-full shadow-sm bg-slate-200 ">
       <div className="py-4 border-b-[1px]">
