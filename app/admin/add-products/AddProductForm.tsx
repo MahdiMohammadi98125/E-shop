@@ -59,17 +59,20 @@ export default function AddProductForm() {
   });
 
   const category = watch("category");
-  const setCustomValue = (id: string, value: any) => {
-    setValue(id, value, {
-      shouldDirty: true,
-      shouldValidate: true,
-      shouldTouch: true,
-    });
-  };
+  const setCustomValue = useCallback(
+    (id: string, value: any) => {
+      setValue(id, value, {
+        shouldDirty: true,
+        shouldValidate: true,
+        shouldTouch: true,
+      });
+    },
+    [setValue]
+  );
 
   useEffect(() => {
     setCustomValue("images", images);
-  }, [images]);
+  }, [images, setCustomValue]);
 
   useEffect(() => {
     if (isProductCreated) {
@@ -77,7 +80,7 @@ export default function AddProductForm() {
       setProductCreated(false);
       setImages(null);
     }
-  }, [isProductCreated]);
+  }, [isProductCreated, reset]);
 
   const addImageToState = useCallback((value: ImageType) => {
     setImages((prev) => {
@@ -229,7 +232,7 @@ export default function AddProductForm() {
       />
       <div className="w-full font-medium">
         <div className="mb-2 font-semibold">Select a category</div>
-        <div className="grid grid-cols-2 md:grid-cols-3 max-h-[50vh] overflow-y-auto gap-3">
+        <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
           {categories.map((item, index) => {
             if (item.label === "All") return;
             return (
