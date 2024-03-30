@@ -271,6 +271,7 @@ export default function AddProductForm() {
       <Button
         label={isLoading ? "Loading..." : "Add product"}
         onClick={handleSubmit(onSubmit)}
+        disabled={isLoading}
       />
     </>
   );

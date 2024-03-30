@@ -73,7 +73,7 @@ export default function Summary({ products, orders, users }: SummaryProps) {
       <div className="mt-4 mb-8">
         <Heading title="Status" center />
       </div>
-      <div className="grid grid-cols-2 gap-3 max-h-[50vh] overflow-y-auto">
+      <div className="grid grid-cols-2 gap-3 ">
         {summaryKeys &&
           summaryKeys.map((key, index) => (
             <div

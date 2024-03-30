@@ -103,7 +103,7 @@ export default function ManageProductClients({
             <ActionBtns
               icon={MdRemoveRedEye}
               onClick={() => {
-                router.push(`/products/${params.row.id}`);
+                router.push(`/product/${params.row.id}`);
               }}
             />
           </div>
@@ -160,13 +160,13 @@ export default function ManageProductClients({
       <div className="mt-8 mb-4">
         <Heading title="Manage Products" center />
       </div>
-      <div style={{ width: "100%", height: 600 }}>
+      <div style={{ width: "100%" }}>
         <DataGrid
           rows={rows}
           columns={columns}
           initialState={{
             pagination: {
-              paginationModel: { page: 0, pageSize: 5 },
+              paginationModel: { page: 0, pageSize: 10 },
             },
           }}
           pageSizeOptions={[5, 10]}
