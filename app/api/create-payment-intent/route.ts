@@ -75,5 +75,8 @@ export async function POST(request: Request) {
     orderData.paymentIntentId = paymentIntent.id;
     await prisma.order.create({ data: orderData });
     return NextResponse.json({ paymentIntent });
+
+    // Return a default response (on error response) if any these condition does not met
   }
+  return NextResponse.error();
 }
