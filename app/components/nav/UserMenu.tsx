@@ -2,12 +2,12 @@
 import { SafeUser } from "@/types";
 import { signOut } from "next-auth/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
 import { AiFillCaretDown } from "react-icons/ai";
 import Avatar from "../Avatar";
 import BackDrop from "./BackDrop";
 import MenuItem from "./MenuItem";
-import { useRouter } from "next/navigation";
 
 interface UserMenuProps {
   currentUser: SafeUser | null;

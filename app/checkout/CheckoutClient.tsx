@@ -47,7 +47,7 @@ export default function CheckoutClient() {
         .catch((err) => {
           setError(true);
           setLoading(false);
-          console.log(err.message);
+          console.log(err);
           toast.error("Something went wrong");
         });
     }

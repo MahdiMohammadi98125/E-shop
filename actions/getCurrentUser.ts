@@ -24,6 +24,6 @@ export const getCurrentUser = async () => {
       emailVerified: currentUser.emailVerified?.toString() || null,
     };
   } catch (error: any) {
-    throw new Error(error);
+    return null;
   }
 };
