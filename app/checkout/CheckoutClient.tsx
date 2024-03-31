@@ -51,7 +51,7 @@ export default function CheckoutClient() {
           toast.error("Something went wrong");
         });
     }
-  }, [cartProducts, handleSetPaymentIntent, paymentIntent, router]);
+  }, [cartProducts, paymentIntent]);
 
   const handlePaymentSuccess = useCallback((val: boolean) => {
     setPaymentSuccess(val);
