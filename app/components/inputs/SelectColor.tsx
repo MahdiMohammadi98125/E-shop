@@ -26,18 +26,24 @@ export default function SelectColor({
     }
   }, [isProductCreated]);
 
-  const handleFileChange = useCallback((value: File) => {
-    setFile(value);
-    addImageToState({ ...item, image: value });
-  }, []);
+  const handleFileChange = useCallback(
+    (value: File) => {
+      setFile(value);
+      addImageToState({ ...item, image: value });
+    },
+    [addImageToState, item]
+  );
 
-  const handleCheck = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    setIsSelected(e.target.checked);
-    if (!e.target.checked) {
-      removeImageFromState(item);
-      setFile(null);
-    }
-  }, []);
+  const handleCheck = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setIsSelected(e.target.checked);
+      if (!e.target.checked) {
+        removeImageFromState(item);
+        setFile(null);
+      }
+    },
+    [item, removeImageFromState]
+  );
 
   return (
     <div className="grid items-center grid-cols-1 p-2 overflow-y-auto  border-b-[1.2px] border-slate-200">

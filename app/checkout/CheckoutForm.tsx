@@ -35,7 +35,7 @@ export default function CheckoutForm({
       return;
     }
     handlePaymentSuccess(false);
-  }, [stripe]);
+  }, [clientSecret, handlePaymentSuccess, stripe]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

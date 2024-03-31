@@ -154,7 +154,7 @@ export default function ManageOrderClients({
         toast.error(error.message);
         console.log(error);
       });
-  }, []);
+  }, [router]);
 
   const handleDeliver = useCallback((id: string) => {
     axios
@@ -167,7 +167,7 @@ export default function ManageOrderClients({
         toast.error(error.message);
         console.log(error);
       });
-  }, []);
+  }, [router]);
 
   return (
     <div className="max-w-[1150px] m-auto text-xl">

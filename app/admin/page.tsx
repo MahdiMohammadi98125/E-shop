@@ -23,3 +23,5 @@ export default async function Admin() {
     </div>
   );
 }
+
+export const revalidate = 0; // revalidate the route

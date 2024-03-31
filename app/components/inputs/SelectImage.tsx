@@ -12,11 +12,14 @@ export default function SelectImage({
   item,
   handleFileChange,
 }: SelectImageProps) {
-  const onDrop = useCallback((acceptedFiles: File[]) => {
-    if (acceptedFiles.length > 0) {
-      handleFileChange(acceptedFiles[0]);
-    }
-  }, []);
+  const onDrop = useCallback(
+    (acceptedFiles: File[]) => {
+      if (acceptedFiles.length > 0) {
+        handleFileChange(acceptedFiles[0]);
+      }
+    },
+    [handleFileChange]
+  );
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: { "image/*": [".jpg", ".jpeg", ".png"] },

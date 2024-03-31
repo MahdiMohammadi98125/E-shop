@@ -23,7 +23,7 @@ export const getCurrentUser = async () => {
       updatedAt: currentUser.updatedAt.toISOString(),
       emailVerified: currentUser.emailVerified?.toString() || null,
     };
-  } catch (error) {
-    return null;
+  } catch (error: any) {
+    throw new Error(error);
   }
 };

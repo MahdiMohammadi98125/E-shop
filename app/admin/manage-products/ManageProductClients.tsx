@@ -112,48 +112,54 @@ export default function ManageProductClients({
     },
   ];
 
-  const handleToggleInStock = useCallback((id: string, inStock: boolean) => {
-    axios
-      .put("/api/product", { id, inStock: !inStock })
-      .then(() => {
-        toast.success("Product status changed successfully");
-        router.refresh();
-      })
-      .catch((error) => {
-        toast.error(error.message);
-        console.log(error);
-      });
-  }, []);
+  const handleToggleInStock = useCallback(
+    (id: string, inStock: boolean) => {
+      axios
+        .put("/api/product", { id, inStock: !inStock })
+        .then(() => {
+          toast.success("Product status changed successfully");
+          router.refresh();
+        })
+        .catch((error) => {
+          toast.error(error.message);
+          console.log(error);
+        });
+    },
+    [router]
+  );
 
-  const handleDeleteProduct = useCallback(async (id: string, images: any[]) => {
-    toast.success("Deleting product please wait...");
-    // delete images from the firebase storage
-    async function deleteImages() {
-      try {
-        for (const item of images) {
-          if (item.image) {
-            const imageRef = ref(storage, item.image);
-            await deleteObject(imageRef);
-            console.log("image deleted");
+  const handleDeleteProduct = useCallback(
+    async (id: string, images: any[]) => {
+      toast.success("Deleting product please wait...");
+      // delete images from the firebase storage
+      async function deleteImages() {
+        try {
+          for (const item of images) {
+            if (item.image) {
+              const imageRef = ref(storage, item.image);
+              await deleteObject(imageRef);
+              console.log("image deleted");
+            }
           }
+        } catch (error) {
+          console.log("Error deleting image from Firebase Storage: ", error);
         }
-      } catch (error) {
-        console.log("Error deleting image from Firebase Storage: ", error);
       }
-    }
-    await deleteImages();
-    // delete product from the mongo db
-    axios
-      .delete(`/api/product/${id}`)
-      .then(() => {
-        toast.success("Product deleted successfully");
-        router.refresh();
-      })
-      .catch((error) => {
-        toast.error(error.message);
-        console.log(error);
-      });
-  }, []);
+      await deleteImages();
+      // delete product from the mongo db
+      axios
+        .delete(`/api/product/${id}`)
+        .then(() => {
+          toast.success("Product deleted successfully");
+          router.refresh();
+        })
+        .catch((error) => {
+          toast.error(error.message);
+          console.log(error);
+        });
+    },
+    [router, storage]
+  );
 
   return (
     <div className="max-w-[1150px] m-auto text-xl">

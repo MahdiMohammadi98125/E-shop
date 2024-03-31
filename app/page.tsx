@@ -1,4 +1,3 @@
-export const revalidate = 0; // revalidate the route
 import { IProductParams, getProducts } from "@/actions/getProducts";
 import Container from "./components/Container";
 import HomeBanner from "./components/HomeBanner";
@@ -44,3 +43,5 @@ export default async function Home({ searchParams }: HomeProps) {
     </div>
   );
 }
+
+export const revalidate = 0; // revalidate the route
