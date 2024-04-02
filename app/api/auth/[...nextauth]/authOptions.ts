@@ -31,7 +31,7 @@ export const authOptions: AuthOptions = {
         });
 
         if (!user || !user.hashedPassword) {
-          throw new Error("User not found!");
+          throw new Error("Email or password is incorrect!");
         }
 
         const validPassowrd = await bcrypt.compare(
@@ -40,7 +40,7 @@ export const authOptions: AuthOptions = {
         );
 
         if (!validPassowrd) {
-          throw new Error("Incorrect password");
+          throw new Error("Email or password is incorrect!");
         }
         return user;
       },
