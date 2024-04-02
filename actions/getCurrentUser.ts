@@ -1,5 +1,6 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/authOptions";
 import { getServerSession } from "next-auth";
+import prisma from "@/libs/prismadb";
 
 const getSession = async () => {
   return await getServerSession(authOptions);
@@ -25,6 +26,7 @@ export const getCurrentUser = async () => {
       emailVerified: currentUser.emailVerified?.toString() || null,
     };
   } catch (error: any) {
+    console.log(error);
     return null;
   }
 };
