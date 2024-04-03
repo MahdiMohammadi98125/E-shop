@@ -32,7 +32,7 @@ export default function RegisterForm({ currentUser }: RegisterFormProps) {
       .post("/api/register", data)
       .then(() => {
         toast.success("account created!");
-        router.push("/cart");
+        router.push("/login");
       })
       .catch(() => {
         toast.error("something went wrong!");
