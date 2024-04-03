@@ -55,16 +55,10 @@ export default function OrderClients({ orders }: OrderClientsProps) {
               <Status
                 text="pending"
                 icon={MdAccessTimeFilled}
-                bg="bg-slate-200"
-                color="text-slate-700"
+                color="text-slate-400"
               />
             ) : params.row.paymentStatus === "complete" ? (
-              <Status
-                text="completed"
-                icon={MdDone}
-                bg="bg-green-200"
-                color="text-green-700"
-              />
+              <Status text="completed" icon={MdDone} color="text-green-700" />
             ) : (
               <></>
             )}
