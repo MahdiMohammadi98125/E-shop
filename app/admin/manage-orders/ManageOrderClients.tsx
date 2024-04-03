@@ -59,16 +59,10 @@ export default function ManageOrderClients({
               <Status
                 text="pending"
                 icon={MdAccessTimeFilled}
-                bg="bg-slate-200"
-                color="text-slate-700"
+                color="text-slate-400"
               />
             ) : params.row.paymentStatus === "complete" ? (
-              <Status
-                text="completed"
-                icon={MdDone}
-                bg="bg-green-200"
-                color="text-green-700"
-              />
+              <Status text="completed" icon={MdDone} color="text-green-700" />
             ) : (
               <></>
             )}
@@ -87,21 +81,18 @@ export default function ManageOrderClients({
               <Status
                 text="pending"
                 icon={MdAccessTimeFilled}
-                bg="bg-slate-200"
-                color="text-slate-700"
+                color="text-slate-400"
               />
             ) : params.row.deliveryStatus === "delivered" ? (
               <Status
                 text="completed"
                 icon={MdRemoveRedEye}
-                bg="bg-green-200"
                 color="text-green-700"
               />
             ) : (
               <Status
                 text="dispacthed"
                 icon={MdDeliveryDining}
-                bg="bg-purple-200"
                 color="text-purple-700"
               />
             )}
@@ -143,31 +134,37 @@ export default function ManageOrderClients({
     },
   ];
 
-  const handleDispatch = useCallback((id: string) => {
-    axios
-      .put("/api/order", { id, deliveryStatus: "dispatched" })
-      .then(() => {
-        toast.success("Order dispatched");
-        router.refresh();
-      })
-      .catch((error) => {
-        toast.error(error.message);
-        console.log(error);
-      });
-  }, [router]);
+  const handleDispatch = useCallback(
+    (id: string) => {
+      axios
+        .put("/api/order", { id, deliveryStatus: "dispatched" })
+        .then(() => {
+          toast.success("Order dispatched");
+          router.refresh();
+        })
+        .catch((error) => {
+          toast.error(error.message);
+          console.log(error);
+        });
+    },
+    [router]
+  );
 
-  const handleDeliver = useCallback((id: string) => {
-    axios
-      .put(`/api/order`, { id, deliveryStatus: "delivered" })
-      .then(() => {
-        toast.success("Order delivered successfully");
-        router.refresh();
-      })
-      .catch((error) => {
-        toast.error(error.message);
-        console.log(error);
-      });
-  }, [router]);
+  const handleDeliver = useCallback(
+    (id: string) => {
+      axios
+        .put(`/api/order`, { id, deliveryStatus: "delivered" })
+        .then(() => {
+          toast.success("Order delivered successfully");
+          router.refresh();
+        })
+        .catch((error) => {
+          toast.error(error.message);
+          console.log(error);
+        });
+    },
+    [router]
+  );
 
   return (
     <div className="max-w-[1150px] m-auto text-xl">

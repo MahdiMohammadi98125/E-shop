@@ -63,17 +63,11 @@ export default function ManageProductClients({
         return (
           <div className="">
             {params.row.inStock === true ? (
-              <Status
-                text="In stock"
-                icon={MdDone}
-                bg="bg-teal-200"
-                color="text-teal-700"
-              />
+              <Status text="In stock" icon={MdDone} color="text-teal-700" />
             ) : (
               <Status
                 text="Out of stock"
                 icon={MdClose}
-                bg="bg-rose-200"
                 color="text-rose-700"
               />
             )}
