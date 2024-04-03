@@ -1,6 +1,6 @@
 import {
-    CartProductType,
-    SelectedImgType,
+  CartProductType,
+  SelectedImgType,
 } from "@/app/product/[productId]/ProductDetails";
 import Image from "next/image";
 
@@ -42,7 +42,7 @@ export default function ProductImage({
           src={cartProduct.selectedImg.image}
           alt="product"
           fill
-          className="w-full min-h-[300px] sm:min-h-[400px] max-h-[500px]"
+          className="w-full min-h-[300px] sm:min-h-[400px] max-h-[500px] object-contain"
         />
       </div>
     </div>

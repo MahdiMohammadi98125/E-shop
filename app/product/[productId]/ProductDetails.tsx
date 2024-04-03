@@ -96,12 +96,12 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
         <Horizental />
         <p>{product.description}</p>
         <Horizental />
-        <div>
+        <div className="space-x-2">
           <span className="font-semibold">CATEGORY:</span>
           <span>{product.category}</span>
         </div>
 
-        <div>
+        <div className="space-x-2">
           <span className="font-semibold">BRAND:</span>
           <span>{product.brand}</span>
         </div>
