@@ -6,12 +6,19 @@ import { getOrders } from "@/actions/getOrders";
 import getUsers from "@/actions/getUsers";
 import BarGraph from "./BarGraph";
 import getGraphData from "@/actions/getGraphData";
+import { getCurrentUser } from "@/actions/getCurrentUser";
+import NullData from "../components/NullData";
 
 export default async function Admin() {
   const products = await getProducts({ category: null });
   const orders = await getOrders();
   const users = await getUsers();
   const barGraphData = await getGraphData();
+  const currentUser = await getCurrentUser();
+
+  if (currentUser?.role !== "ADMIN") {
+    return <NullData title="Oops access denied!" />;
+  }
   return (
     <div className="pt-8">
       <Container>

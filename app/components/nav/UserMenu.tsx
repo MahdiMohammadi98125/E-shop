@@ -30,7 +30,7 @@ export default function UserMenu({ currentUser }: UserMenuProps) {
       </div>
       {isOpen && (
         <div className="absolute right-0 z-30 flex flex-col bg-white rounded-md shadow-md cursor-pointer top-12 w-[170px] overflow-hidden">
-          {currentUser?.email ? (
+          {currentUser?.email && currentUser.role === "USER" ? (
             <div>
               <span
                 onClick={() => {
@@ -39,6 +39,12 @@ export default function UserMenu({ currentUser }: UserMenuProps) {
               >
                 <MenuItem onClick={toggleMenu}>Your orders</MenuItem>
               </span>
+
+              <hr />
+              <MenuItem onClick={signOut}>Logout</MenuItem>
+            </div>
+          ) : currentUser?.role === "ADMIN" ? (
+            <div>
               <span
                 onClick={() => {
                   router.push("/admin");
@@ -46,6 +52,14 @@ export default function UserMenu({ currentUser }: UserMenuProps) {
               >
                 <MenuItem onClick={toggleMenu}>Admin dashboard</MenuItem>
               </span>
+              <span
+                onClick={() => {
+                  router.push("/orders");
+                }}
+              >
+                <MenuItem onClick={toggleMenu}>Your orders</MenuItem>
+              </span>
+
               <hr />
               <MenuItem onClick={signOut}>Logout</MenuItem>
             </div>
