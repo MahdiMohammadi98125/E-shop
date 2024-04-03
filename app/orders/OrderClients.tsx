@@ -13,6 +13,7 @@ import {
   MdDone,
   MdRemoveRedEye,
 } from "react-icons/md";
+import NullData from "../components/NullData";
 
 interface OrderClientsProps {
   orders: ChangedOrder[];
@@ -131,20 +132,23 @@ export default function OrderClients({ orders }: OrderClientsProps) {
       <div className="mt-8 mb-4">
         <Heading title="Manage Orders" center />
       </div>
-      <div style={{ width: "100%", height: 600 }}>
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          initialState={{
-            pagination: {
-              paginationModel: { page: 0, pageSize: 5 },
-            },
-          }}
-          pageSizeOptions={[5, 10]}
-          checkboxSelection
-          disableRowSelectionOnClick
-        />
-      </div>
+      {orders.length === 0 && <NullData title="No orders found!" />}
+      {orders.length !== 0 && (
+        <div style={{ width: "100%" }}>
+          <DataGrid
+            rows={rows}
+            columns={columns}
+            initialState={{
+              pagination: {
+                paginationModel: { page: 0, pageSize: 10 },
+              },
+            }}
+            pageSizeOptions={[5, 10]}
+            checkboxSelection
+            disableRowSelectionOnClick
+          />
+        </div>
+      )}
     </div>
   );
 }
