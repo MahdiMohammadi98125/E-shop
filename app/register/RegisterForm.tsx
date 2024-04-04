@@ -26,7 +26,23 @@ export default function RegisterForm({ currentUser }: RegisterFormProps) {
   } = useForm<FieldValues>({
     defaultValues: { name: "", email: "", password: "" },
   });
-  const onSubmit: SubmitHandler<FieldValues> = (data: FieldValues) => {
+  const onSubmit: SubmitHandler<FieldValues> = async (data: FieldValues) => {
+    try {
+      const res = await axios.post("/api/user-exists", {
+        email: data.email,
+      });
+
+      const user = res.data;
+
+      if (user) {
+        toast.error("User already exists!");
+        return;
+      }
+    } catch (error) {
+      // Handle error
+      console.error("Error:", error);
+    }
+
     setIsLoading(true);
     axios
       .post("/api/register", data)
