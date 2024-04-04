@@ -27,20 +27,17 @@ export default function RegisterForm({ currentUser }: RegisterFormProps) {
     defaultValues: { name: "", email: "", password: "" },
   });
   const onSubmit: SubmitHandler<FieldValues> = async (data: FieldValues) => {
-    try {
-      const res = await axios.post("/api/user-exists", {
-        email: data.email,
-      });
-
-      const user = res.data;
-
-      if (user) {
-        toast.error("User already exists!");
-        return;
-      }
-    } catch (error) {
-      // Handle error
-      console.error("Error:", error);
+    const res = await fetch("/api/user-exists", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email: data.email }),
+    });
+    const { user } = await res.json();
+    if (user && user !== null) {
+      toast.error("user already exists!");
+      return;
     }
 
     setIsLoading(true);
