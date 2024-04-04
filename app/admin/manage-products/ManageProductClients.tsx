@@ -116,7 +116,6 @@ export default function ManageProductClients({
         })
         .catch((error) => {
           toast.error(error.message);
-          console.log(error);
         });
     },
     [router]
@@ -132,7 +131,6 @@ export default function ManageProductClients({
             if (item.image) {
               const imageRef = ref(storage, item.image);
               await deleteObject(imageRef);
-              console.log("image deleted");
             }
           }
         } catch (error) {
@@ -149,7 +147,6 @@ export default function ManageProductClients({
         })
         .catch((error) => {
           toast.error(error.message);
-          console.log(error);
         });
     },
     [router, storage]

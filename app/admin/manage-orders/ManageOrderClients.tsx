@@ -144,7 +144,6 @@ export default function ManageOrderClients({
         })
         .catch((error) => {
           toast.error(error.message);
-          console.log(error);
         });
     },
     [router]
@@ -160,7 +159,6 @@ export default function ManageOrderClients({
         })
         .catch((error) => {
           toast.error(error.message);
-          console.log(error);
         });
     },
     [router]
